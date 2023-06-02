@@ -7,6 +7,7 @@ public class CameraRotation : MonoBehaviour
     [SerializeField] private float gyroscopeSensitivity = 1f;
     [SerializeField] private bool smoothRotation = true;
     [SerializeField] private float smoothRotationSpeed = 5f, xRotation = 0f, yRotation = 0f;
+    private Quaternion targetRotation;
 
     void Start(){
 
@@ -39,13 +40,16 @@ public class CameraRotation : MonoBehaviour
 
         yRotation += (mouseX + gyroY);
 
-        Quaternion targetRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+        targetRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+        
+    }
+
+    void FixedUpdate(){
         if (smoothRotation){
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, smoothRotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, smoothRotationSpeed * Time.fixedDeltaTime);
         }
         else{
             transform.rotation = targetRotation;
         }
-        
     }
 }
