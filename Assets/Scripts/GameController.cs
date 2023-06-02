@@ -17,6 +17,8 @@ public class GameController : MonoBehaviour
     }
     #endregion
     [SerializeField] private List<GameObject> objectsToHide;
+    [SerializeField] private GameObject EnemyModel;
+    [SerializeField] private Collider EnemyCollider;
     private int difficultyLevel = 0;
     public int getDifficultyLevel { get{ return difficultyLevel; }}
 
@@ -26,6 +28,8 @@ public class GameController : MonoBehaviour
 
     public void StartGame(){
         CollectableController.Singleton.StartCollectables();
+        EnemyModel.SetActive(true);
+        EnemyCollider.enabled = true;
 
         switch(difficultyLevel){
             case 0 : EnemiesManager.Singleton.StartEnemy(EnemyPiece.pawn);
@@ -43,6 +47,7 @@ public class GameController : MonoBehaviour
         foreach(var current in objectsToHide){
             current.SetActive(false);
         }
+
     }
 
     public void UpdateDifficulty(){
