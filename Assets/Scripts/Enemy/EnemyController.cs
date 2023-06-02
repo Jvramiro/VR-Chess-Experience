@@ -6,7 +6,7 @@ using System.Linq;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private EnemyMovement enemyMovement;
-    [SerializeField] private bool directional, diagonal, noLimit;
+    [SerializeField] private bool test_directional, test_diagonal, test_noLimit;
     private GameObject player;
 
     void Start(){
@@ -68,8 +68,16 @@ public class EnemyController : MonoBehaviour
         return transform.position;
     }
 
+
+
     [EasyButtons.Button]
     public void TestNextMovement(){
+        if(!enemyMovement.getIsMoving){
+            enemyMovement.CallMovement(GetNextMovement(test_directional, test_diagonal, test_noLimit));
+        }
+    }
+
+    public void CallNextMovement(bool directional = false, bool diagonal = false, bool noLimit = false){
         if(!enemyMovement.getIsMoving){
             enemyMovement.CallMovement(GetNextMovement(directional, diagonal, noLimit));
         }
