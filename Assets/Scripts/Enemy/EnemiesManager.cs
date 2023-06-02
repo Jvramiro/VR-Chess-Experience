@@ -20,7 +20,7 @@ public class EnemiesManager : MonoBehaviour
 
     [SerializeField] private EnemyController enemyController;
     [SerializeField] private bool isActive;
-    [SerializeField] private float delay = 5;
+    [SerializeField] private float delay = 2;
     [SerializeField] private float counter;
 
     [SerializeField] private EnemyPiece enemyPiece = EnemyPiece.pawn;
@@ -58,5 +58,9 @@ public class EnemiesManager : MonoBehaviour
 
     public void StopEnemy(){
         isActive = false;
+    }
+
+    public void UpdateEnemyDelay(float delayToUpdate){
+        delay = delayToUpdate;
     }
 }

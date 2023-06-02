@@ -43,7 +43,6 @@ public class EnemyController : MonoBehaviour
         if(noLimit && (directional || diagonal)){
             Vector3 bestPosition = nearPositions.OrderBy(position => Vector3.Distance(position, player.transform.position)).FirstOrDefault();
             Vector3 pathSum = transform.position - bestPosition;
-            Debug.Log(pathSum);
 
             for(int i = 0; i < 7; i++){
                 Vector3 addPosition = bestPosition - (pathSum * i);

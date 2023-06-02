@@ -5,7 +5,8 @@ using UnityEngine;
 public class CameraRaycast : MonoBehaviour
 {
     [SerializeField] private GameObject selectedObject;
-    [SerializeField] private PlayController playController;
+    private PlayController playController;
+    private DifficultyController difficultyController;
 
     public delegate void Vector3Action(Vector3 vector);
     public Vector3Action NextPosition;
@@ -25,18 +26,28 @@ public class CameraRaycast : MonoBehaviour
                 UpdateCounter(reset: true);
             }
 
-            if (hit.collider.CompareTag("PlayTarget")){
+            if (hit.collider.CompareTag("PlayTarget") && Vector3.Distance(transform.position, hit.collider.transform.position) < 2.5f){
                 if(playController == null){ playController = hit.collider.GetComponent<PlayController>(); }
                 playController.UpdateCounter();
             }
             else{
                 if(playController != null){ playController.UpdateCounter(true); }
             }
+
+            if (hit.collider.CompareTag("DifficultyTarget") && Vector3.Distance(transform.position, hit.collider.transform.position) < 2.5f){
+                if(difficultyController == null){ difficultyController = hit.collider.GetComponent<DifficultyController>(); }
+                difficultyController.UpdateCounter();
+            }
+            else{
+                if(difficultyController != null){ difficultyController.UpdateCounter(true); }
+            }
+
         }
         else{
             ResetSelecter();
             UpdateCounter(reset: true);
             if(playController != null){ playController.UpdateCounter(true); }
+            if(difficultyController != null){ difficultyController.UpdateCounter(true); }
         }
     }
 
