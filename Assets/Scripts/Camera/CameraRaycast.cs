@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraRaycast : MonoBehaviour
 {
     [SerializeField] private GameObject selectedObject;
+    [SerializeField] private PlayController playController;
 
     public delegate void Vector3Action(Vector3 vector);
     public Vector3Action NextPosition;
@@ -23,10 +24,19 @@ public class CameraRaycast : MonoBehaviour
                 ResetSelecter();
                 UpdateCounter(reset: true);
             }
+
+            if (hit.collider.CompareTag("PlayTarget")){
+                if(playController == null){ playController = hit.collider.GetComponent<PlayController>(); }
+                playController.UpdateCounter();
+            }
+            else{
+                if(playController != null){ playController.UpdateCounter(true); }
+            }
         }
         else{
             ResetSelecter();
             UpdateCounter(reset: true);
+            if(playController != null){ playController.UpdateCounter(true); }
         }
     }
 

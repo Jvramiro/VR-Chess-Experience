@@ -26,10 +26,10 @@ public class CollectableController : MonoBehaviour
     void Start(){
         CollectableCount = 0;
         FillPositions();
-        Invoke(nameof(StartCollectables), 7f);
+        //Invoke(nameof(StartCollectables), 7f);
     }
 
-    void StartCollectables(){
+    public void StartCollectables(){
         isActive = true;
     }
 

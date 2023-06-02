@@ -7,6 +7,9 @@ TagManager:
   - Collectable
   - Selecter
   - CollectableCollider
+  - Enemy
+  - EnemyCollider
+  - PlayTarget
   layers:
   - Default
   - TransparentFX
