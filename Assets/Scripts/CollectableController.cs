@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
 
 public class CollectableController : MonoBehaviour
 {
@@ -19,14 +20,17 @@ public class CollectableController : MonoBehaviour
     #endregion
 
     [SerializeField] private GameObject collectable;
-    [SerializeField] private int CollectableCount;
+    [SerializeField] private TMP_Text collectableText;
+    [SerializeField] private int collectableCount;
 
     private List<Vector3> positions = new List<Vector3>();
     private bool isActive;
     void Start(){
-        CollectableCount = 0;
+        collectableCount = 0;
         FillPositions();
         //Invoke(nameof(StartCollectables), 7f);
+        collectableCount = SaveController.Singleton.GetScore();
+        collectableText.text = $"Best Score: {collectableCount} Crowns";
     }
 
     public void StartCollectables(){
@@ -62,8 +66,8 @@ public class CollectableController : MonoBehaviour
             positions.Add(positionToAdd);
         }
     }
-
     public void IncreaseCollectables(){
-        CollectableCount++;
+        collectableCount++;
+        SaveController.Singleton.UpdateScore(collectableCount);
     }
 }

@@ -20,6 +20,10 @@ public class GameController : MonoBehaviour
     private int difficultyLevel = 0;
     public int getDifficultyLevel { get{ return difficultyLevel; }}
 
+    void Start(){
+        difficultyLevel = SaveController.Singleton.GetDifficulty();
+    }
+
     public void StartGame(){
         CollectableController.Singleton.StartCollectables();
 
