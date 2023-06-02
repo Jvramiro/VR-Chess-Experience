@@ -14,11 +14,6 @@ public class PlayerController : MonoBehaviour
     void OnDisable() => cameraRaycast.NextPosition -= CallMovement;
     
     void Update(){
-        if(Input.GetMouseButtonDown(0) && cameraRaycast.GetSelectedObject() != null){                                  
-            Vector3 getSelectedPosition = cameraRaycast.GetSelectedObject().transform.position;
-            CallMovement(getSelectedPosition);
-        }
-
         if(isMoving){
             transform.position = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.deltaTime);
 
