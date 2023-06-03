@@ -19,6 +19,19 @@ public class EnemyController : MonoBehaviour
 
         List<Vector3> nearPositions = GetPawnNearPositions(directional, diagonal, noLimit);
         Vector3 nextPosition = nearPositions.OrderBy(position => Vector3.Distance(position, player.transform.position)).FirstOrDefault();
+        
+        bool isValid = false;
+        while(!isValid){
+            if(!CheckPositionIsValid(nextPosition + new Vector3(0,2,0))){
+                nearPositions.RemoveAt(0);
+                nextPosition = nearPositions.FirstOrDefault();
+            }
+            else{
+                isValid = true;
+            }
+            if(nearPositions.Count <= 0){ return transform.position; }
+        }
+
         return nextPosition;
 
     }
@@ -65,6 +78,18 @@ public class EnemyController : MonoBehaviour
         }
 
         return transform.position;
+    }
+
+    bool CheckPositionIsValid(Vector3 position){
+        Ray ray = new Ray(position, Vector3.down);
+        RaycastHit hit;
+
+        if(Physics.Raycast(ray, out hit)){
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Selecter")){
+                return true;
+            }
+        }
+        return false;
     }
 
 
