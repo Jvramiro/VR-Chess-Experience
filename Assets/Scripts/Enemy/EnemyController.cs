@@ -84,11 +84,10 @@ public class EnemyController : MonoBehaviour
         Ray ray = new Ray(position, Vector3.down);
         RaycastHit hit;
 
-        if(Physics.Raycast(ray, out hit)){
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Selecter")){
-                return true;
-            }
+        if(Physics.Raycast(ray, out hit, 10f, layerMask: LayerMask.GetMask("Selecter"))){
+            return true;
         }
+
         return false;
     }
 

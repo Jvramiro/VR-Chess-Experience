@@ -13,6 +13,11 @@ public class CameraRaycast : MonoBehaviour
 
     [SerializeField] private float counter, maxDelay = 2f;
 
+    void Start(){
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
     void Update(){
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         RaycastHit hit;

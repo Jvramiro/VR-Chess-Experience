@@ -25,12 +25,13 @@ public class CollectableController : MonoBehaviour
 
     private List<Vector3> positions = new List<Vector3>();
     private bool isActive;
+    private int bestScore;
     void Start(){
         collectableCount = 0;
         FillPositions();
         //Invoke(nameof(StartCollectables), 7f);
-        collectableCount = SaveController.Singleton.GetScore();
-        collectableText.text = $"Best Score: {collectableCount} Crowns";
+        bestScore = SaveController.Singleton.GetScore();
+        collectableText.text = $"Best Score: {bestScore} Crowns";
     }
 
     public void StartCollectables(){
@@ -68,6 +69,8 @@ public class CollectableController : MonoBehaviour
     }
     public void IncreaseCollectables(){
         collectableCount++;
-        SaveController.Singleton.UpdateScore(collectableCount);
+        if(collectableCount > bestScore){
+            SaveController.Singleton.UpdateScore(collectableCount);
+        }
     }
 }

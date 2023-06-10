@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
         else{
             Singleton = this;
         }
+         Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
     #endregion
     [SerializeField] private List<GameObject> objectsToHide;
