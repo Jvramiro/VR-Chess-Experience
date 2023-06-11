@@ -35,7 +35,7 @@ The game utilizes camera based controls:
 
 ## Credits
 
-This game was developed by João. It incorporates a Skybox with image generated on https://skybox.blockadelabs.com/.
+This game was developed by João Victor Ramiro. It incorporates a Skybox with image generated on https://skybox.blockadelabs.com/.
 
 ## Feedback and Contributions
 
