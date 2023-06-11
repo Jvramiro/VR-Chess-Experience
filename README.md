@@ -1,5 +1,7 @@
 # Chessboard Escape VR
 
+<img src="img_readme_01.png" alt="VR Gameplay">
+
 Chessboard Escape VR is a virtual reality (VR) game developed in Unity using the Google Cardboard platform. The project was initially created within a 24-hour timeframe to conceive the gameplay idea and implement basic functionality. It has been further refined, refactored, and enhanced with custom models for improved VR experience.
 
 ## Gameplay
